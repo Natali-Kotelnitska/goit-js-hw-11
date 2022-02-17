@@ -1,0 +1,123 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  background-image: linear-gradient(
+    to right,
+    rgb(185, 255, 240) 5%,
+    rgb(185, 227, 255) 20%,
+    rgb(185, 239, 255) 80%,
+    rgb(185, 233, 255) 90%
+  );
+  color: #424242;
+  padding: 30px 5px;
+  @media screen and (min-width: 760px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.search-form {
+  @media screen and (min-width: 480px) {
+    margin-right: auto;
+    margin-left: auto;
+    width: 427px;
+  }
+}
+input {
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 20px;
+  margin-right: 20px;
+  display: inline-block;
+  margin-bottom: 30px;
+  @media screen and (min-width: 480px) {
+    width: 320px;
+  }
+}
+.gallery {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media screen and (min-width: 760px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.image-thumb {
+  width: 300px;
+  height: 204px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.photo-card {
+  height: 252px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: #424242;
+
+  @media screen and (max-width: 759px) {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  width: 350px;
+  margin: 10px;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  display: block;
+}
+.info {
+  display: flex;
+  flex-wrap: wrap;
+}
+// ......
+// .gallery {
+//   text-align: center;
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   // display: grid;
+//   // grid-template-columns: repeat(3, 1fr);
+//   // gap: 20px;
+//   background-color: aquamarine;
+// }
+
+// .photo-card {
+//   position: relative;
+//   // background-color: rgba(0, 0, 0, 0.6);
+//   width: 100%;
+//   min-height: 100px;
+//   cursor: pointer;
+// }
+// .info {
+//   bottom: 0;
+//   left: 0;
+//   width: 100%;
+//   padding: 7px 4px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+// }
+// .info-item {
+//   margin-right: 30px;
+// }

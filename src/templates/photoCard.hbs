@@ -1,0 +1,39 @@
+{{#each this}}
+  <div class='photo-card'>
+    <div class='image-thumb'>
+      <img
+        src='{{webformatURL}}'
+        alt='{{tags}}'
+        height='{{webformatHeight}}'
+        {{!-- width='{{webformatWidth}}' --}}
+        loading='lazy'
+      />
+    </div>
+    <div class='info'>
+      <p class='info-item'>
+        <b>Likes {{likes}}</b>
+      </p>
+      <p class='info-item'>
+        <b>Views {{views}}</b>
+      </p>
+      <p class='info-item'>
+        <b>Comments {{comments}}</b>
+      </p>
+      <p class='info-item'>
+        <b>Downloads {{downloads}}</b>
+      </p>
+    </div>
+  </div>
+{{/each}}
+
+{{! webformatURL - ссылка на маленькое изображение для списка карточек. // largeImageURL - ссылка на
+большое изображение. // tags - строка с описанием изображения. Подойдет для атрибута alt. // likes -
+количество лайков. // views - количество просмотров. // comments - количество комментариев. //
+downloads - количество загрузок. }}
+
+{{!-- {{#each this}}
+  <li class='country-list__item'>
+    <img class='flag' src='{{flags.svg}}' alt='flag of {{name.official}}' width='50' />
+    <p>{{name.official}}</p>
+  </li>
+{{/each}} --}}
