@@ -31,10 +31,8 @@ export default class PhotosApiService {
         return response.json();
       })
       .then(data => {
-        console.log(data.hits);
-        console.log(data.hits[1]);
         this.page += 1;
-        return data.hits; //return data.articles (щось конкретне повертаєм а не все)
+        return data.hits;
       });
   }
 

@@ -1,8 +1,14 @@
 <form class="search-form" id="search-form">
   <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-  <button type="submit">Search</button>
+  <button type="submit" class="btn btn-primary mb-2">Search</button>
 </form>
 <div class="gallery">
   <!-- Карточки изображений -->
 </div>
-<button type="button" class="load-more">Load more</button>
+<!-- Load more Btn & Spinner -->
+<button type="button" class="load-more button" data-action="load-more">
+  <!-- Load more -->
+  <span class="spinner-border spinner-border-sm spinner is-hidden" role="status" aria-hidden="true">
+  </span>
+  <span class="label">Load more</span>
+</button>

@@ -1,61 +1,49 @@
 import photoCardTml from './templates/photoCard.hbs';
 import './sass/main.scss';
-import PhotosApiservice from './api/photo-servis.js';
-
+import PhotosApiservice from './js/api/photo-servis.js';
+import LoadMoreBtn from './js/components/load-more-btn.js';
 const refs = {
   form: document.getElementById('search-form'),
   gallery: document.querySelector('.gallery'), // Карточки изображений
-  loadMoreBtn: document.querySelector('.load-more'),
+  // loadMoreBtn: document.querySelector('.load-more'),
 };
+const loadMoreBtn = new LoadMoreBtn({
+  selector: '[data-action="load-more"]',
+  hidden: true,
+});
 // photosApiService - це Об'єкт. Доступ photosApiService.query;
 const photosApiService = new PhotosApiservice();
 
 refs.form.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', onLoadMore);
+// refs.loadMoreBtn.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
   e.preventDefault();
-  // const searchQuery = e.currentTarget.elements.searchQuery.value;
+
   photosApiService.query = e.currentTarget.elements.searchQuery.value;
+  // if (photosApiService.query === '') {
+  //   return alert('Enter value');
+  // }
+  loadMoreBtn.show();
+
   photosApiService.resetPage();
-  photosApiService.fetchPhotos().then(appendPhotosMarkup);
-  // fetch
-  // const options = {
-  //     headers: {
-  //         API_KEY: '25749157-a4c917c2bcd06827218e6e0f4',
-  //     },
-  //     params: {
-  //     q: `${searchQuery}`,
-  //         image_type: 'photo',
-  //         orientation: 'horizontal',
-  //         safesearch: 'true',
-  //         // default 1, 20
-  //     page: '1',
-  //     per_page: '40',
-  //     }
-  // },
+  clearGalleryContainer();
+  onLoadMore();
 }
-// const BASE_URL = `https://pixabay.com/api/`;
-// // fetch(`${BASE_URL}${name}?${searchParams}`)
-// // https://pixabay.com/api/?q=${searchQuery}&image_type=
-// fetch(`${BASE_URL}?key=${API_KEY}&q=`, options).then(response => {
-//     if (!response.ok) {
-//         throw new Error(response.status)
-//     }
-//     return response.json();
-// });
 
 function onLoadMore() {
-  photosApiService.fetchPhotos().then(appendPhotosMarkup);
+  loadMoreBtn.disable();
+  photosApiService.fetchPhotos().then(data => {
+    appendPhotosMarkup(data);
+    loadMoreBtn.enable();
+  });
 }
 
 function appendPhotosMarkup(data) {
   refs.gallery.insertAdjacentHTML('beforeend', photoCardTml(data));
 }
-// webformatURL - ссылка на маленькое изображение для списка карточек.
-// largeImageURL - ссылка на большое изображение.
-// tags - строка с описанием изображения. Подойдет для атрибута alt.
-// likes - количество лайков.
-// views - количество просмотров.
-// comments - количество комментариев.
-// downloads - количество загрузок.
+
+function clearGalleryContainer() {
+  refs.gallery.innerHTML = '';
+}
